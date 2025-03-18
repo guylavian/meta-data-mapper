@@ -1,0 +1,77 @@
+{
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue to Next Step",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "reset": "Reset",
+    "addRule": "Add Mapping Rule",
+    "remove": "Remove",
+    "loadExample": "Load Example",
+    "createMapping": "Create Mapping"
+  },
+  "navigation": {
+    "home": "Home",
+    "settings": "Settings",
+    "profile": "Profile",
+    "mappings": "Data Mapping"
+  },
+  "labels": {
+    "source": "Source",
+    "target": "Target",
+    "name": "Name",
+    "description": "Description",
+    "type": "Type",
+    "status": "Status",
+    "sourceField": "Source Field",
+    "targetField": "Target Field",
+    "result": "Result",
+    "mappingRules": "Mapping Rules",
+    "sourceMetadataPlaceholder": "Enter source data here (JSON)",
+    "title": "Data Mapping Tool",
+    "testAPIs": "Test APIs",
+    "sourceFields": "Source Fields",
+    "targetFields": "Target Fields",
+    "mappedResult": "Mapped Result"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "noData": "No data to display",
+    "confirmDelete": "Are you sure you want to delete?",
+    "metadataInputHelp": "Enter your source data in JSON format or use one of the sample APIs below",
+    "sampleApiHelp": "Click on any of these sample APIs to load real data for testing",
+    "mappingInstructions": "Create mapping rules by selecting source and target fields, then click 'Create Mapping'",
+    "selectSourceFields": "Select the source fields you want to map",
+    "selectTargetFields": "Select the target fields you want to map to",
+    "noMappingRules": "No mapping rules. Create a new mapping rule by selecting source and target fields.",
+    "noMappingResult": "No mapping results to display. Create mapping rules to see the result.",
+    "fieldsDetected": "{{count}} fields detected in your data. Click 'Continue' to start mapping.",
+    "reviewInstructions": "Review your mapped data. You can go back to previous steps to make changes if needed."
+  },
+  "steps": {
+    "selectData": "1. Enter Data",
+    "chooseFields": "2. Review Fields",
+    "mapFields": "3. Create Mappings",
+    "review": "4. View Results",
+    "step1Title": "Step 1: Enter Your Source Data",
+    "step1Description": "Enter your JSON data directly, paste from clipboard, or load from one of our sample APIs.",
+    "metadataDesc": "Enter your source data in JSON format",
+    "chooseFieldsDesc": "Review the fields detected in your data",
+    "mappingDesc": "Create mapping rules between source and target fields",
+    "resultDesc": "View and verify your mapping results"
+  },
+  "instructions": {
+    "mainDescription": "Follow these steps to map your data. We'll guide you through the process from data entry to final results."
+  },
+  "errors": {
+    "emptyInput": "Input field is empty. Please enter data.",
+    "invalidJSON": "Invalid JSON format. Please check your input.",
+    "selectFields": "Please select at least one source field and one target field.",
+    "mappingFailed": "Mapping failed. Please check the following errors:"
+  }
+} 

@@ -1,0 +1,77 @@
+{
+  "buttons": {
+    "save": "שמור",
+    "cancel": "ביטול",
+    "continue": "המשך לשלב הבא",
+    "back": "חזור",
+    "next": "הבא",
+    "previous": "הקודם",
+    "submit": "שלח",
+    "reset": "אפס",
+    "addRule": "הוסף כלל מיפוי",
+    "remove": "הסר",
+    "loadExample": "טען דוגמה",
+    "createMapping": "צור מיפוי"
+  },
+  "navigation": {
+    "home": "דף הבית",
+    "settings": "הגדרות",
+    "profile": "פרופיל",
+    "mappings": "מיפוי נתונים"
+  },
+  "labels": {
+    "source": "מקור",
+    "target": "יעד",
+    "name": "שם",
+    "description": "תיאור",
+    "type": "סוג",
+    "status": "סטטוס",
+    "sourceField": "שדה מקור",
+    "targetField": "שדה יעד",
+    "result": "תוצאה",
+    "mappingRules": "כללי מיפוי",
+    "sourceMetadataPlaceholder": "הכנס את נתוני המקור כאן (JSON)",
+    "title": "כלי מיפוי נתונים",
+    "testAPIs": "ממשקי API לבדיקה",
+    "sourceFields": "שדות מקור",
+    "targetFields": "שדות יעד",
+    "mappedResult": "תוצאת המיפוי"
+  },
+  "messages": {
+    "loading": "טוען...",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "noData": "אין נתונים להצגה",
+    "confirmDelete": "האם אתה בטוח שברצונך למחוק?",
+    "metadataInputHelp": "הכנס את נתוני המקור בפורמט JSON או השתמש באחד ממקורות הדוגמה למטה",
+    "sampleApiHelp": "לחץ על אחד ממקורות ה-API לטעינת נתונים אמיתיים לבדיקה",
+    "mappingInstructions": "צור כללי מיפוי על ידי בחירת שדות מקור ויעד, ואז לחץ על 'צור מיפוי'",
+    "selectSourceFields": "בחר את שדות המקור שברצונך למפות",
+    "selectTargetFields": "בחר את שדות היעד שברצונך למפות אליהם",
+    "noMappingRules": "אין כללי מיפוי. צור כלל מיפוי חדש על ידי בחירת שדות מקור ויעד.",
+    "noMappingResult": "אין תוצאות מיפוי להצגה. צור כללי מיפוי כדי לראות את התוצאה.",
+    "fieldsDetected": "{{count}} שדות זוהו בנתונים שלך. לחץ על 'המשך' כדי להתחיל במיפוי.",
+    "reviewInstructions": "סקור את הנתונים הממופים שלך. תוכל לחזור לשלבים קודמים כדי לבצע שינויים במידת הצורך."
+  },
+  "steps": {
+    "selectData": "1. הזנת נתונים",
+    "chooseFields": "2. סקירת שדות",
+    "mapFields": "3. יצירת מיפויים",
+    "review": "4. צפייה בתוצאות",
+    "step1Title": "שלב 1: הזן את נתוני המקור שלך",
+    "step1Description": "הזן את נתוני ה-JSON ישירות, הדבק מהלוח, או טען מאחד ממקורות הדוגמה שלנו.",
+    "metadataDesc": "הזן את נתוני המקור שלך בפורמט JSON",
+    "chooseFieldsDesc": "סקור את השדות שזוהו בנתונים שלך",
+    "mappingDesc": "צור כללי מיפוי בין שדות המקור לשדות היעד",
+    "resultDesc": "צפה ואמת את תוצאות המיפוי שלך"
+  },
+  "instructions": {
+    "mainDescription": "עקוב אחר השלבים הבאים כדי למפות את הנתונים שלך. נלווה אותך בתהליך מהזנת הנתונים ועד לתוצאות הסופיות."
+  },
+  "errors": {
+    "emptyInput": "שדה הקלט ריק. אנא הזן נתונים.",
+    "invalidJSON": "פורמט JSON לא תקין. אנא בדוק את הקלט שלך.",
+    "selectFields": "אנא בחר לפחות שדה מקור אחד ושדה יעד אחד.",
+    "mappingFailed": "המיפוי נכשל. אנא בדוק את השגיאות הבאות:"
+  }
+} 

@@ -1,0 +1,83 @@
+.title {
+  @apply text-xl font-semibold text-gray-800 mb-4;
+}
+
+.compareContainer {
+  @apply grid grid-cols-2 gap-4;
+}
+
+.sourceFields, .targetFields {
+  @apply w-full;
+}
+
+.entityCard {
+  @apply bg-white rounded-lg shadow-md p-4 mb-4;
+}
+
+.entityHeader {
+  @apply flex items-center justify-between mb-3;
+}
+
+.entityName {
+  @apply text-lg font-semibold text-gray-800;
+}
+
+.fieldCount {
+  @apply text-sm text-gray-500;
+}
+
+.fieldList {
+  @apply space-y-2;
+}
+
+.field {
+  @apply flex items-start p-2 rounded-md hover:bg-gray-50 transition-colors;
+}
+
+.fieldInfo {
+  @apply flex-1;
+}
+
+.fieldName {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.fieldPath {
+  @apply text-xs text-gray-500 mt-1;
+}
+
+.fieldType {
+  @apply text-xs px-2 py-1 rounded-full;
+}
+
+.fieldType.string {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.fieldType.number {
+  @apply bg-green-100 text-green-800;
+}
+
+.fieldType.boolean {
+  @apply bg-purple-100 text-purple-800;
+}
+
+.fieldType.array {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.fieldType.object {
+  @apply bg-red-100 text-red-800;
+}
+
+.description {
+  @apply text-xs text-gray-600 mt-1;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+} 

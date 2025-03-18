@@ -2,46 +2,57 @@ export interface Field {
   id: string;
   name: string;
   type: string;
-  description?: string;
-  required?: boolean;
   path: string;
+  description?: string;
+  isRequired?: boolean;
+  validation?: any;
 }
 
 export interface Entity {
   id: string;
   name: string;
-  description?: string;
   fields: Field[];
 }
 
 export interface MappingRule {
+  id: string;
   sourceField: Field;
   targetField: Field;
-  transformation?: {
-    type: 'direct' | 'format' | 'convert';
-    sourceType?: string;
-    targetType?: string;
-    format?: string;
-    options?: Record<string, any>;
-  };
 }
 
 export interface ValidationResult {
   isValid: boolean;
-  errors?: string[];
-  warnings?: string[];
+  message: string;
+}
+
+export interface ParseMetadataRequest {
+  metadata: string;
 }
 
 export interface ParseMetadataResponse {
   entities: Entity[];
+  errors?: string[];
+}
+
+export interface ValidateMappingRequest {
+  sourceField: Field;
+  targetField: Field;
 }
 
 export interface ValidateMappingResponse {
-  result: ValidationResult;
+  isValid: boolean;
+  message?: string;
+  errors?: string[];
+}
+
+export interface ApplyMappingRequest {
+  metadata: string;
+  rules: MappingRule[];
 }
 
 export interface ApplyMappingResponse {
-  result: Record<string, any>;
+  result: any;
+  errors?: string[];
 }
 
 export interface FetchMetadataResponse {
@@ -50,18 +61,4 @@ export interface FetchMetadataResponse {
 
 export interface FetchMetadataRequest {
   url: string;
-}
-
-export interface ParseMetadataRequest {
-  metadata: string;
-}
-
-export interface ValidateMappingRequest {
-  sourceField: Field;
-  targetField: Field;
-}
-
-export interface ApplyMappingRequest {
-  metadata: string;
-  rules: MappingRule[];
 } 

@@ -1,0 +1,468 @@
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Layout adjustments */
+[dir="rtl"] .layout-container {
+  flex-direction: row-reverse;
+}
+
+/* Form elements */
+[dir="rtl"] .form-label {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+[dir="rtl"] .input-group > :not(:first-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+/* Navigation */
+[dir="rtl"] .nav-item {
+  margin-right: 0;
+  margin-left: 16px;
+}
+
+/* Icons */
+[dir="rtl"] .icon-left {
+  margin-right: 0;
+  margin-left: 8px;
+  transform: scaleX(-1);
+}
+
+/* Grid layout */
+[dir="rtl"] .grid {
+  direction: rtl;
+}
+
+/* Buttons */
+[dir="rtl"] .btn-icon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+/* Dropdowns */
+[dir="rtl"] .dropdown-menu {
+  text-align: right;
+}
+
+/* Tables */
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+/* Padding and margins */
+[dir="rtl"] .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .pr-2 {
+  padding-right: 0;
+  padding-left: 0.5rem;
+}
+
+[dir="rtl"] .pl-2 {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+/* RTL Specific Styles */
+[dir="rtl"] {
+  /* Text alignment */
+  .text-left {
+    text-align: right;
+  }
+  .text-right {
+    text-align: left;
+  }
+
+  /* Margins */
+  .ml-1, .ml-2, .ml-3, .ml-4 {
+    margin-left: 0;
+    margin-right: 0.25rem;
+  }
+  .mr-1, .mr-2, .mr-3, .mr-4 {
+    margin-right: 0;
+    margin-left: 0.25rem;
+  }
+
+  /* Padding */
+  .pl-1, .pl-2, .pl-3, .pl-4 {
+    padding-left: 0;
+    padding-right: 0.25rem;
+  }
+  .pr-1, .pr-2, .pr-3, .pr-4 {
+    padding-right: 0;
+    padding-left: 0.25rem;
+  }
+
+  /* Borders */
+  .border-l {
+    border-left: none;
+    border-right: 1px solid;
+  }
+  .border-r {
+    border-right: none;
+    border-left: 1px solid;
+  }
+
+  /* Rounded corners */
+  .rounded-l {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+  .rounded-r {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
+
+  /* Flexbox */
+  .flex-row {
+    flex-direction: row-reverse;
+  }
+  .justify-start {
+    justify-content: flex-end;
+  }
+  .justify-end {
+    justify-content: flex-start;
+  }
+  .items-start {
+    align-items: flex-end;
+  }
+  .items-end {
+    align-items: flex-start;
+  }
+
+  /* Icons and images */
+  .transform-flip {
+    transform: scaleX(-1);
+  }
+
+  /* Forms */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  textarea {
+    text-align: right;
+  }
+
+  /* Lists */
+  ul, ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+  }
+
+  /* Transitions */
+  .transition-transform {
+    transition-property: transform;
+  }
+
+  /* Shadows */
+  .shadow-l {
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  }
+  .shadow-r {
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+[dir="rtl"] .flip-rtl {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .ml-auto {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+[dir="rtl"] .ml-1 {
+  margin-left: 0;
+  margin-right: 0.25rem;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .ml-3 {
+  margin-left: 0;
+  margin-right: 0.75rem;
+}
+
+[dir="rtl"] .ml-4 {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .mr-1 {
+  margin-right: 0;
+  margin-left: 0.25rem;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .mr-3 {
+  margin-right: 0;
+  margin-left: 0.75rem;
+}
+
+[dir="rtl"] .mr-4 {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+[dir="rtl"] .pl-1 {
+  padding-left: 0;
+  padding-right: 0.25rem;
+}
+
+[dir="rtl"] .pl-2 {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+[dir="rtl"] .pl-3 {
+  padding-left: 0;
+  padding-right: 0.75rem;
+}
+
+[dir="rtl"] .pl-4 {
+  padding-left: 0;
+  padding-right: 1rem;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .border-l {
+  border-left: none;
+  border-right: 1px solid;
+}
+
+[dir="rtl"] .border-r {
+  border-right: none;
+  border-left: 1px solid;
+}
+
+[dir="rtl"] .rounded-l {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+[dir="rtl"] .rounded-r {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* RTL for grid and flex layouts */
+[dir="rtl"] .justify-start {
+  justify-content: flex-end;
+}
+
+[dir="rtl"] .justify-end {
+  justify-content: flex-start;
+}
+
+[dir="rtl"] .items-start {
+  align-items: flex-end;
+}
+
+[dir="rtl"] .items-end {
+  align-items: flex-start;
+}
+
+/* RTL for form elements */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] textarea {
+  text-align: right;
+}
+
+/* RTL for icons and arrows */
+[dir="rtl"] .icon-arrow-right {
+  transform: rotate(180deg);
+}
+
+[dir="rtl"] .icon-arrow-left {
+  transform: rotate(180deg);
+}
+
+/* RTL for step indicators */
+[dir="rtl"] .step-indicator .step:after {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* RTL for dropdown menus */
+[dir="rtl"] .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+/* RTL for tooltips */
+[dir="rtl"] .tooltip:before {
+  left: auto;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* RTL for custom components */
+[dir="rtl"] .mapping-arrow {
+  transform: scaleX(-1);
+}
+
+/* RTL for JSON display */
+[dir="rtl"] .json-view {
+  direction: ltr;
+  text-align: left;
+}
+
+/* RTL for code blocks */
+[dir="rtl"] pre,
+[dir="rtl"] code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* RTL for language switcher */
+[dir="rtl"] .language-switcher {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* RTL specific styles */
+[dir="rtl"] {
+  /* Text alignment */
+  text-align: right;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+/* Margins and paddings */
+[dir="rtl"] .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir="rtl"] .pl-2 {
+  padding-left: 0;
+  padding-right: 0.5rem;
+}
+
+[dir="rtl"] .pr-2 {
+  padding-right: 0;
+  padding-left: 0.5rem;
+}
+
+/* List styles */
+[dir="rtl"] .list-inside {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+/* Flexbox direction */
+[dir="rtl"] .flex {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Grid direction */
+[dir="rtl"] .grid {
+  direction: rtl;
+}
+
+/* Border radius adjustments */
+[dir="rtl"] .rounded-l {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+[dir="rtl"] .rounded-r {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+/* Icons and arrows */
+[dir="rtl"] .transform {
+  transform: scaleX(-1);
+}
+
+/* Input fields */
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+  text-align: right;
+}
+
+/* Dropdown menus */
+[dir="rtl"] .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+/* Button icons */
+[dir="rtl"] .button-icon {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+/* Form labels */
+[dir="rtl"] label {
+  text-align: right;
+}
+
+/* Custom scrollbar */
+[dir="rtl"] ::-webkit-scrollbar {
+  left: 0;
+  right: auto;
+} 

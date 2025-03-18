@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "root": "ישות בסיסית",
+    "source": "מבנה המטא-דאטה המקורי שלך",
+    "target": "מבנה המטא-דאטה המעובד",
+    "fieldCount": "שדה {{count}}",
+    "fieldCount_plural": "{{count}} שדות"
+  },
+  "systemEntities": {
+    "title": "בחר ישות EMM",
+    "description": "בחר ישות EMM למיפוי עם המטא-דאטה שלך",
+    "fields": "שדות זמינים",
+    "loading": "...EMM טוען ישויות",
+    "error": "EMM שגיאה בטעינת ישויות",
+    "hasRequiredFields": "מכיל שדות חובה"
+  },
+  "mapping": {
+    "title": "יצירת מיפוי",
+    "sourceFields": "שדות מקור",
+    "targetFields": "שדות יעד",
+    "createMapping": "צור מיפוי שדה",
+    "mapEntireEntity": "מפה את כל הישות",
+    "switchToEntityMode": "עבור למצב ישות",
+    "switchToFieldMode": "עבור למצב שדה",
+    "entityModeDescription": "מפה את כל מבנה הישות בבת אחת. המערכת תמפה אוטומטית את כל השדות לפי הסדר.",
+    "fieldModeDescription": "מפה שדות בודדים אחד אחרי השני לשליטה מדויקת יותר.",
+    "entitySourceDescription": "ישות מקור עם {{count}} שדות",
+    "entityTargetDescription": "ישות יעד עם {{count}} שדות",
+    "andMore": "ועוד {{count}} שדות..."
+  },
+  "steps": {
+    "selectData": "בחר מטא-דאטה",
+    "metadataDesc": "הדבק את ה-JSON של המטא-דאטה כדי להתחיל",
+    "selectEntity": "בחר ישות",
+    "selectEntityDesc": "בחר איזו ישות מהמטא-דאטה שלך ברצונך למפות",
+    "chooseFields": "סקור שדות",
+    "chooseFieldsDesc": "סקור את השדות של הישות שנבחרה",
+    "mapFields": "מפה שדות",
+    "mappingDesc": "צור כללי מיפוי בין השדות שלך לשדות ה-API",
+    "review": "סקור תוצאה",
+    "resultDesc": "סקור את תוצאת המיפוי הסופית"
+  },
+  "messages": {
+    "selectedEntity": "ישות נבחרת: {{entity}}",
+    "fieldsDetected": "זוהו {{count}} שדות",
+    "mappingInstructions": "צור כללי מיפוי על ידי בחירת שדות מקור ויעד",
+    "reviewInstructions": "סקור את תוצאת המיפוי הסופית"
+  },
+  "loading": "...טוען"
+} 

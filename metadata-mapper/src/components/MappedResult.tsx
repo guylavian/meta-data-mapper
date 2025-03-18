@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRTL } from '../contexts/RTLContext';
 
 interface MappedResultProps {
   result: any;
@@ -6,13 +8,16 @@ interface MappedResultProps {
 }
 
 const MappedResult: React.FC<MappedResultProps> = ({ result, error }) => {
+  const { t } = useTranslation();
+  const { isRTL } = useRTL();
+
   if (error) {
     return (
       <div className="p-4">
-        <h2 className="text-xl font-bold mb-2">Error</h2>
-        <div className="p-4 bg-red-50 text-red-700 rounded-md">
-          {error}
-        </div>
+        <h2 className="text-xl font-semibold mb-4 text-red-600">
+          {t('messages.error')}
+        </h2>
+        <p className="text-red-500">{error}</p>
       </div>
     );
   }
@@ -20,18 +25,21 @@ const MappedResult: React.FC<MappedResultProps> = ({ result, error }) => {
   if (!result) {
     return (
       <div className="p-4">
-        <h2 className="text-xl font-bold mb-2">Mapped Result</h2>
-        <div className="p-4 bg-gray-50 text-gray-500 rounded-md">
-          No result yet. Enter metadata and define mapping rules to see the result.
-        </div>
+        <h2 className="text-xl font-semibold mb-4">{t('labels.result')}</h2>
+        <p className="text-gray-500">{t('messages.noData')}</p>
       </div>
     );
   }
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-2">Mapped Result</h2>
-      <pre className="p-4 bg-gray-50 rounded-md overflow-auto">
+      <h2 className="text-xl font-semibold mb-4">{t('labels.result')}</h2>
+      <pre
+        className={`bg-gray-100 p-4 rounded-lg overflow-auto ${
+          isRTL ? 'text-right' : 'text-left'
+        }`}
+        dir={isRTL ? 'rtl' : 'ltr'}
+      >
         {JSON.stringify(result, null, 2)}
       </pre>
     </div>

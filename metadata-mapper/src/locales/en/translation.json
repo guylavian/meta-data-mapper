@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "root": "Root Entity",
+    "source": "Your Original Metadata Structure",
+    "target": "API Parsed Metadata Structure",
+    "fieldCount": "{{count}} field",
+    "fieldCount_plural": "{{count}} fields"
+  },
+  "systemEntities": {
+    "title": "Select EMM Entity",
+    "description": "Choose an EMM entity to map with your metadata",
+    "fields": "Available Fields",
+    "loading": "Loading EMM entities...",
+    "error": "Failed to load EMM entities",
+    "hasRequiredFields": "Contains required fields"
+  },
+  "mapping": {
+    "title": "Create Mapping",
+    "sourceFields": "Source Fields",
+    "targetFields": "Target Fields",
+    "createMapping": "Create Field Mapping",
+    "mapEntireEntity": "Map Entire Entity",
+    "switchToEntityMode": "Switch to Entity Mode",
+    "switchToFieldMode": "Switch to Field Mode",
+    "entityModeDescription": "Map the entire entity structure at once. This will automatically map all fields based on their order.",
+    "fieldModeDescription": "Map individual fields one by one for more precise control.",
+    "entitySourceDescription": "Source entity with {{count}} fields",
+    "entityTargetDescription": "Target entity with {{count}} fields",
+    "andMore": "and {{count}} more fields..."
+  },
+  "steps": {
+    "selectData": "Select Metadata",
+    "metadataDesc": "Paste your metadata JSON to begin",
+    "selectEntity": "Select Entity",
+    "selectEntityDesc": "Choose which entity from your metadata you want to map",
+    "chooseFields": "Review Fields",
+    "chooseFieldsDesc": "Review the fields of your selected entity",
+    "mapFields": "Map Fields",
+    "mappingDesc": "Create mapping rules between your fields and the API fields",
+    "review": "Review Result",
+    "resultDesc": "Review the final mapped result"
+  },
+  "messages": {
+    "selectedEntity": "Selected Entity: {{entity}}",
+    "fieldsDetected": "{{count}} fields detected",
+    "mappingInstructions": "Create mapping rules by selecting source and target fields",
+    "reviewInstructions": "Review the final mapped result"
+  },
+  "loading": "Loading..."
+} 

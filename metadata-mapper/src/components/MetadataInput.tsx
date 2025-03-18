@@ -1,110 +1,136 @@
 import React, { useState } from 'react';
-import { Card, Input, Button, message, Space, Tabs, Select } from 'antd';
-import { useAppDispatch } from '../store';
-import { parseMetadata } from '../store/metadata/metadataSlice';
-import { metadataUrls } from '../data/metadataUrls';
+import { useTranslation } from 'react-i18next';
+import { useRTL } from '../contexts/RTLContext';
 
-const { TextArea } = Input;
-const { TabPane } = Tabs;
-const { Option } = Select;
+interface MetadataInputProps {
+  onSubmit: (metadata: string) => void;
+  isLoading?: boolean;
+}
 
-const MetadataInput: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const [url, setUrl] = useState('');
-  const [jsonInput, setJsonInput] = useState('');
-  const [loading, setLoading] = useState(false);
+export const MetadataInput: React.FC<MetadataInputProps> = ({
+  onSubmit,
+  isLoading = false,
+}) => {
+  const [input, setInput] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
+  const { isRTL } = useRTL();
 
-  const handleUrlSubmit = async () => {
-    if (!url) {
-      message.error('Please enter a URL');
-      return;
-    }
-
+  const validateJSON = (text: string): boolean => {
     try {
-      setLoading(true);
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      await dispatch(parseMetadata(JSON.stringify(data)));
-      message.success('Metadata loaded successfully');
-    } catch (error) {
-      message.error('Failed to fetch metadata from URL');
-      console.error('Error fetching metadata:', error);
-    } finally {
-      setLoading(false);
+      JSON.parse(text);
+      return true;
+    } catch (e) {
+      return false;
     }
   };
 
-  const handleJsonSubmit = async () => {
-    if (!jsonInput) {
-      message.error('Please enter JSON data');
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!input.trim()) {
+      setError(t('errors.emptyInput'));
       return;
     }
 
-    try {
-      setLoading(true);
-      // Validate JSON
-      JSON.parse(jsonInput);
-      await dispatch(parseMetadata(jsonInput));
-      message.success('Metadata parsed successfully');
-    } catch (error) {
-      message.error('Invalid JSON data');
-      console.error('Error parsing metadata:', error);
-    } finally {
-      setLoading(false);
+    if (!validateJSON(input)) {
+      setError(t('errors.invalidJSON'));
+      return;
     }
+
+    onSubmit(input);
   };
 
-  const handleUrlSelect = (value: string) => {
-    setUrl(value);
+  const handlePaste = async (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData('text');
+    setInput(text);
   };
 
   return (
-    <Card title="Input Metadata" style={{ marginBottom: '20px' }}>
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="URL" key="1">
-          <Space direction="vertical" style={{ width: '100%' }}>
-            <Select
-              style={{ width: '100%' }}
-              placeholder="Select a sample metadata URL or enter your own"
-              onChange={handleUrlSelect}
-              value={url}
-            >
-              {metadataUrls.map((metadataUrl) => (
-                <Option key={metadataUrl.url} value={metadataUrl.url}>
-                  {metadataUrl.name} - {metadataUrl.description}
-                </Option>
-              ))}
-            </Select>
-            <Input
-              placeholder="Or enter your own metadata URL"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              onPressEnter={handleUrlSubmit}
-            />
-            <Button type="primary" onClick={handleUrlSubmit} loading={loading}>
-              Load from URL
-            </Button>
-          </Space>
-        </TabPane>
-        <TabPane tab="JSON" key="2">
-          <Space direction="vertical" style={{ width: '100%' }}>
-            <TextArea
+    <form onSubmit={handleSubmit} className="w-full max-w-4xl mx-auto">
+      <div className="space-y-4">
+        <div>
+          <label
+            htmlFor="metadata"
+            className={`block text-sm font-medium text-gray-700 ${
+              isRTL ? 'text-right' : 'text-left'
+            }`}
+          >
+            {t('labels.metadataInput')}
+          </label>
+          <div className="mt-1">
+            <textarea
+              id="metadata"
+              name="metadata"
               rows={10}
-              placeholder="Enter JSON metadata"
-              value={jsonInput}
-              onChange={(e) => setJsonInput(e.target.value)}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onPaste={handlePaste}
+              className={`shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md ${
+                error ? 'border-red-500' : ''
+              } ${isRTL ? 'text-right' : 'text-left'}`}
+              placeholder={t('placeholders.metadataInput')}
+              dir="ltr"
             />
-            <Button type="primary" onClick={handleJsonSubmit} loading={loading}>
-              Parse JSON
-            </Button>
-          </Space>
-        </TabPane>
-      </Tabs>
-    </Card>
-  );
-};
+            {error && (
+              <p
+                className={`mt-2 text-sm text-red-600 ${
+                  isRTL ? 'text-right' : 'text-left'
+                }`}
+              >
+                {error}
+              </p>
+            )}
+          </div>
+          <p
+            className={`mt-2 text-sm text-gray-500 ${
+              isRTL ? 'text-right' : 'text-left'
+            }`}
+          >
+            {t('hints.metadataInput')}
+          </p>
+        </div>
 
-export default MetadataInput; 
+        <div
+          className={`flex ${
+            isRTL ? 'justify-start' : 'justify-end'
+          } pt-4`}
+        >
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+              isLoading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
+          >
+            {isLoading ? (
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+            ) : null}
+            {t('buttons.submit')}
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+}; 

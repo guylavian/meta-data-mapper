@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useRTL } from '../contexts/RTLContext';
 
 interface MappingRule {
   sourceField: string;
@@ -53,6 +55,8 @@ const EMM_TARGET_FIELDS = [
 ];
 
 const MappingRules: React.FC<MappingRulesProps> = ({ onRulesChange, metadata }) => {
+  const { t } = useTranslation();
+  const { isRTL } = useRTL();
   const [rules, setRules] = useState<MappingRule[]>([]);
   const [availableEntities, setAvailableEntities] = useState<Entity[]>([]);
   const [selectedEntity, setSelectedEntity] = useState<string | null>(null);
@@ -170,56 +174,78 @@ const MappingRules: React.FC<MappingRulesProps> = ({ onRulesChange, metadata }) 
   };
 
   const renderStepIndicator = () => (
-    <div className="flex justify-between mb-8">
-      <div className={`flex items-center ${step >= 1 ? 'text-blue-500' : 'text-gray-400'}`}>
+    <div className={`flex ${isRTL ? 'flex-row-reverse' : 'flex-row'} justify-between mb-8`}>
+      <div className={`flex items-center ${step >= 1 ? 'text-blue-500' : 'text-gray-400'} ${isRTL ? 'flex-row-reverse' : ''}`}>
         <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${step >= 1 ? 'border-blue-500' : 'border-gray-300'}`}>
           1
         </div>
-        <span className="ml-2">Select Data</span>
+        <span className={`${isRTL ? 'ml-2' : 'mr-2'}`}>{t('steps.selectData')}</span>
       </div>
-      <div className={`flex items-center ${step >= 2 ? 'text-blue-500' : 'text-gray-400'}`}>
+      <div className={`flex items-center ${step >= 2 ? 'text-blue-500' : 'text-gray-400'} ${isRTL ? 'flex-row-reverse' : ''}`}>
         <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${step >= 2 ? 'border-blue-500' : 'border-gray-300'}`}>
           2
         </div>
-        <span className="ml-2">Choose Fields</span>
+        <span className={`${isRTL ? 'ml-2' : 'mr-2'}`}>{t('steps.chooseFields')}</span>
       </div>
-      <div className={`flex items-center ${step >= 3 ? 'text-blue-500' : 'text-gray-400'}`}>
+      <div className={`flex items-center ${step >= 3 ? 'text-blue-500' : 'text-gray-400'} ${isRTL ? 'flex-row-reverse' : ''}`}>
         <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${step >= 3 ? 'border-blue-500' : 'border-gray-300'}`}>
           3
         </div>
-        <span className="ml-2">Map Fields</span>
+        <span className={`${isRTL ? 'ml-2' : 'mr-2'}`}>{t('steps.mapFields')}</span>
       </div>
-      <div className={`flex items-center ${step >= 4 ? 'text-blue-500' : 'text-gray-400'}`}>
+      <div className={`flex items-center ${step >= 4 ? 'text-blue-500' : 'text-gray-400'} ${isRTL ? 'flex-row-reverse' : ''}`}>
         <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${step >= 4 ? 'border-blue-500' : 'border-gray-300'}`}>
           4
         </div>
-        <span className="ml-2">Review</span>
+        <span className={`${isRTL ? 'ml-2' : 'mr-2'}`}>{t('steps.review')}</span>
       </div>
     </div>
   );
 
+  const addRule = () => {
+    const newRules = [...rules, { sourceField: '', targetField: '' }];
+    setRules(newRules);
+    onRulesChange(newRules);
+  };
+
+  const updateRule = (index: number, field: keyof MappingRule, value: string) => {
+    const newRules = rules.map((rule, i) => {
+      if (i === index) {
+        return { ...rule, [field]: value };
+      }
+      return rule;
+    });
+    setRules(newRules);
+    onRulesChange(newRules);
+  };
+
+  const removeRule = (index: number) => {
+    const newRules = rules.filter((_, i) => i !== index);
+    setRules(newRules);
+    onRulesChange(newRules);
+  };
+
   return (
-    <div className="p-4">
+    <div className={`p-4 ${isRTL ? 'text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Map Your Data</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('labels.mappingRules')}</h2>
         <p className="text-gray-600 mb-4">
-          Follow these steps to map your data to the Entity Metadata Manager (EMM) format.
-          We'll guide you through selecting your data and mapping it to the appropriate fields.
+          {t('instructions.mainDescription')}
         </p>
         {renderStepIndicator()}
       </div>
 
       {step === 1 && (
         <div className="mb-4">
-          <h3 className="text-xl font-semibold mb-2">Step 1: Select Your Data</h3>
+          <h3 className="text-xl font-semibold mb-2">{t('steps.step1Title')}</h3>
           <p className="text-gray-600 mb-4">
-            Choose the data you want to map. This could be information about a person, place, thing, or any other entity.
+            {t('steps.step1Description')}
           </p>
           <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
             {availableEntities.map((entity) => (
               <div
                 key={entity.path}
-                className={`flex items-center gap-2 p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${
+                className={`flex ${isRTL ? 'flex-row-reverse' : ''} items-center gap-2 p-4 border rounded-lg cursor-pointer hover:bg-gray-50 ${
                   selectedEntity === entity.path ? 'bg-blue-50 border-blue-500' : ''
                 }`}
                 onClick={() => handleEntitySelect(entity.path)}
@@ -227,10 +253,10 @@ const MappingRules: React.FC<MappingRulesProps> = ({ onRulesChange, metadata }) 
                 <div className="flex-1">
                   <span className="font-medium text-lg">{entity.name}</span>
                   <p className="text-gray-500 text-sm mt-1">
-                    Contains {entity.fields.length} fields of information
+                    {t('messages.containsFields', { count: entity.fields.length })}
                   </p>
                 </div>
-                <span className="text-blue-500">→</span>
+                <span className={`text-blue-500 transform ${isRTL ? 'rotate-180' : ''}`}>→</span>
               </div>
             ))}
           </div>
@@ -431,6 +457,45 @@ const MappingRules: React.FC<MappingRulesProps> = ({ onRulesChange, metadata }) 
           </div>
         </div>
       )}
+
+      <div className="mt-8 space-y-4">
+        {rules.map((rule, index) => (
+          <div key={index} className="flex space-x-4 items-start">
+            <div className="flex-1">
+              <input
+                type="text"
+                className={`w-full p-2 border rounded ${isRTL ? 'text-right' : 'text-left'}`}
+                placeholder={t('labels.sourceField')}
+                value={rule.sourceField}
+                onChange={(e) => updateRule(index, 'sourceField', e.target.value)}
+                dir={isRTL ? 'rtl' : 'ltr'}
+              />
+            </div>
+            <div className="flex-1">
+              <input
+                type="text"
+                className={`w-full p-2 border rounded ${isRTL ? 'text-right' : 'text-left'}`}
+                placeholder={t('labels.targetField')}
+                value={rule.targetField}
+                onChange={(e) => updateRule(index, 'targetField', e.target.value)}
+                dir={isRTL ? 'rtl' : 'ltr'}
+              />
+            </div>
+            <button
+              onClick={() => removeRule(index)}
+              className="px-3 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              {t('buttons.remove')}
+            </button>
+          </div>
+        ))}
+        <button
+          onClick={addRule}
+          className="w-full px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {t('buttons.addRule')}
+        </button>
+      </div>
     </div>
   );
 };
