@@ -7,6 +7,13 @@ import {
 } from '../models/types';
 
 export class MetadataService {
+  private readonly safeTransforms: Record<string, (value: any) => any> = {
+    toUpperCase: (v: any) => (typeof v === 'string' ? v.toUpperCase() : v),
+    toLowerCase: (v: any) => (typeof v === 'string' ? v.toLowerCase() : v),
+    trim: (v: any) => (typeof v === 'string' ? v.trim() : v),
+    toNumber: (v: any) => Number(v),
+    toString: (v: any) => (v !== undefined && v !== null ? String(v) : v)
+  };
   private getType(value: any): string {
     if (Array.isArray(value)) {
       return `array<${value.length > 0 ? this.getType(value[0]) : 'any'}>`;
@@ -142,10 +149,12 @@ export class MetadataService {
       
       case 'convert':
         if (config.customFunction) {
+          const transform = this.safeTransforms[config.customFunction];
+          if (!transform) {
+            throw new Error(`Unsupported transformation: ${config.customFunction}`);
+          }
           try {
-            // WARNING: This is unsafe and should be replaced with a proper sandbox
-            const fn = new Function('value', config.customFunction);
-            return fn(value);
+            return transform(value);
           } catch (error) {
             console.error('Error in custom transformation:', error);
             throw new Error('Failed to apply custom transformation');
@@ -163,7 +172,11 @@ export class MetadataService {
       rules.forEach(rule => {
         const sourceValue = this.getValueByPath(data, rule.sourceField);
         const transformedValue = rule.transformation
-          ? this.applyTransformation(sourceValue, rule.transformation)
+          ? this.applyTransformation(sourceValue, {
+              ...rule.transformation,
+              sourceType: rule.transformation.sourceType || typeof sourceValue,
+              targetType: rule.transformation.targetType || rule.transformation.sourceType || typeof sourceValue
+            })
           : sourceValue;
         
         this.setValueByPath(result, rule.targetField, transformedValue);

@@ -16,10 +16,7 @@ export interface Entity {
 export interface MappingRule {
   sourceField: string;
   targetField: string;
-  transformation?: {
-    type: 'direct' | 'format' | 'convert';
-    config?: Record<string, any>;
-  };
+  transformation?: TransformationConfig;
 }
 
 export interface TransformationConfig {
