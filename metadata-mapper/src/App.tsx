@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import MetadataInput from './components/MetadataInput'
 import MappingRules from './components/MappingRules'
 import MappedResult from './components/MappedResult'
+import Header from './components/Header/Header'
+import About from './components/About'
 
 interface MappingRule {
   sourceField: string;
@@ -10,6 +12,7 @@ interface MappingRule {
 }
 
 function App() {
+  const [page, setPage] = useState<'home' | 'about'>('home');
   const [metadata, setMetadata] = useState('');
   const [mappingRules, setMappingRules] = useState<MappingRule[]>([]);
   const [mappedResult, setMappedResult] = useState<any>(null);
@@ -65,25 +68,28 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100">
+      <Header onNavigate={setPage} currentPage={page} />
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Metadata Mapper</h1>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow">
-            <MetadataInput onMetadataChange={handleMetadataChange} />
-          </div>
-          
-          <div className="bg-white rounded-lg shadow">
-            <MappingRules 
-              onRulesChange={handleRulesChange} 
-              metadata={metadata}
-            />
-          </div>
-        </div>
-
-        <div className="mt-6 bg-white rounded-lg shadow">
-          <MappedResult result={mappedResult} error={error} />
-        </div>
+        {page === 'home' ? (
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-white rounded-lg shadow">
+                <MetadataInput onMetadataChange={handleMetadataChange} />
+              </div>
+              <div className="bg-white rounded-lg shadow">
+                <MappingRules
+                  onRulesChange={handleRulesChange}
+                  metadata={metadata}
+                />
+              </div>
+            </div>
+            <div className="mt-6 bg-white rounded-lg shadow">
+              <MappedResult result={mappedResult} error={error} />
+            </div>
+          </>
+        ) : (
+          <About />
+        )}
       </div>
     </div>
   )
