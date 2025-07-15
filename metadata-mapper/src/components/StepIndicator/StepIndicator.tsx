@@ -1,28 +1,43 @@
 import React from 'react';
 
-interface StepIndicatorProps {
-  currentStep: number;
-  steps: Array<{
-    number: number;
-    label: string;
-  }>;
+interface Step {
+  number: number;
+  label: string;
 }
 
-export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, steps }) => {
+interface StepIndicatorProps {
+  currentStep: number;
+  setStep: (step: number) => void;
+  steps: Step[];
+}
+
+export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep, setStep, steps }) => {
   return (
-    <div className="flex justify-between mb-8">
-      {steps.map((step) => (
-        <div
-          key={step.number}
-          className={`flex items-center ${currentStep >= step.number ? 'text-blue-500' : 'text-gray-400'}`}
-        >
+    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 40, fontFamily: 'Inter, sans-serif' }}>
+      {steps.map((s) => (
+        <div key={s.number} onClick={() => setStep(s.number)} style={{ cursor: 'pointer', textAlign: 'center' }}>
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center border-2 
-              ${currentStep >= step.number ? 'border-blue-500' : 'border-gray-300'}`}
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              border: `2px solid ${currentStep === s.number ? '#1677ff' : '#ddd'}`,
+              backgroundColor: currentStep === s.number ? '#1677ff' : '#fff',
+              color: currentStep === s.number ? '#fff' : '#999',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto',
+              fontSize: 14,
+              fontWeight: 500,
+              transition: 'all 0.2s',
+            }}
           >
-            {step.number}
+            {s.number}
           </div>
-          <span className="ml-2">{step.label}</span>
+          <div style={{ marginTop: 8, fontSize: 12, color: currentStep === s.number ? '#1677ff' : '#999', fontWeight: 500 }}>
+            {s.label}
+          </div>
         </div>
       ))}
     </div>

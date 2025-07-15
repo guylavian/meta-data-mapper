@@ -1,0 +1,53 @@
+.managementCard {
+  background: #1E1E1E;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  padding: 24px 20px;
+  margin-bottom: 24px;
+}
+.title {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.createBtn {
+  background: #fff;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.createBtn:hover {
+  background: #eaeaea;
+}
+.loading, .empty {
+  color: #aaa;
+  font-size: 15px;
+  padding: 24px 0;
+  text-align: center;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  color: #fff;
+  background: #222;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  border: 1.5px solid transparent;
+}
+.item:hover, .item:focus {
+  background: #333;
+  outline: none;
+} 

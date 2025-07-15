@@ -1,0 +1,39 @@
+.listContainer {
+  background: #1E1E1E;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  padding: 0;
+  margin-bottom: 24px;
+  position: relative;
+}
+.list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: #fff;
+  background: #222;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  border: 1.5px solid transparent;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.item:hover, .item:focus {
+  background: #333;
+  outline: none;
+}
+.selected {
+  border: 1.5px solid #fff;
+  background: #333;
+  color: #fff;
+} 

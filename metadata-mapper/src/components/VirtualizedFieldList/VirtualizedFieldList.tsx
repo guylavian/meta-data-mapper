@@ -1,35 +1,48 @@
-import React from 'react';
-import { FixedSizeList } from 'react-window';
-import { Field } from '../../types/mapping';
+import React from "react";
+import styles from "./VirtualizedFieldList.module.css";
 
 interface VirtualizedFieldListProps {
-  fields: Field[];
-  itemHeight: number;
-  maxHeight: number;
-  renderItem: (field: Field) => React.ReactNode;
+  fields: string[];
+  selected: string[];
+  onSelect: (field: string) => void;
+  height?: number;
+  rowHeight?: number;
 }
 
 export const VirtualizedFieldList: React.FC<VirtualizedFieldListProps> = ({
   fields,
-  itemHeight,
-  maxHeight,
-  renderItem
+  selected,
+  onSelect,
+  height = 300,
+  rowHeight = 36,
 }) => {
-  const Row = ({ index, style }: { index: number; style: React.CSSProperties }) => (
-    <div style={style}>
-      {renderItem(fields[index])}
-    </div>
-  );
+  // Simple virtualization (for demo; use react-window for large lists in production)
+  const visibleCount = Math.floor(height / rowHeight);
+  const [start, setStart] = React.useState(0);
+  const end = Math.min(start + visibleCount, fields.length);
 
   return (
-    <FixedSizeList
-      height={Math.min(fields.length * itemHeight, maxHeight)}
-      itemCount={fields.length}
-      itemSize={itemHeight}
-      width="100%"
-      className="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+    <div
+      className={styles.listContainer}
+      style={{ height, overflowY: "auto" }}
+      onScroll={e => {
+        const scrollTop = (e.target as HTMLDivElement).scrollTop;
+        setStart(Math.floor(scrollTop / rowHeight));
+      }}
     >
-      {Row}
-    </FixedSizeList>
+      <ul className={styles.list} style={{ height: fields.length * rowHeight }}>
+        {fields.slice(start, end).map((field, idx) => (
+          <li
+            key={field}
+            className={`${styles.item} ${selected.includes(field) ? styles.selected : ""}`}
+            style={{ top: (start + idx) * rowHeight, height: rowHeight }}
+            onClick={() => onSelect(field)}
+            tabIndex={0}
+          >
+            {field}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }; 

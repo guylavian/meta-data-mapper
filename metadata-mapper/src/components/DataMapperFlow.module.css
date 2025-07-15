@@ -1,0 +1,168 @@
+/* Wrapper and Card */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 8px;
+}
+.card {
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  padding: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 40px 16px 40px;
+  border-bottom: 1px solid #eee;
+}
+.title {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.themeToggle {
+  margin-right: 8px;
+}
+
+/* Stepper */
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 40px 0 40px;
+  gap: 0;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  min-width: 80px;
+  user-select: none;
+}
+.circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.label {
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: color 0.25s;
+  text-align: center;
+}
+
+/* Step Content Area */
+.contentArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 32px 40px 0 40px;
+  min-height: 260px;
+  position: relative;
+}
+.stepContent {
+  width: 100%;
+  min-height: 220px;
+  position: relative;
+}
+.stepTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+.stepDesc {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.placeholderBox {
+  min-height: 100px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.placeholderText {
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Navigation Buttons */
+.navButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 0 40px;
+  margin-top: 16px;
+}
+.backBtn, .nextBtn {
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 28px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+.backBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .card {
+    padding: 0 0 24px 0;
+    min-height: 420px;
+  }
+  .header, .stepper, .contentArea, .navButtons {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .stepper {
+    padding-top: 18px;
+  }
+  .contentArea {
+    padding-top: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .card {
+    border-radius: 0;
+    min-height: 0;
+    box-shadow: none;
+  }
+  .header, .stepper, .contentArea, .navButtons {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+} 

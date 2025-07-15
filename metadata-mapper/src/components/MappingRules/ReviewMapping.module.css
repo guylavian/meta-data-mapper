@@ -1,0 +1,42 @@
+.reviewCard {
+  background: #1E1E1E;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  padding: 24px 20px;
+  margin-bottom: 24px;
+}
+.title {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.empty {
+  color: #aaa;
+  font-size: 15px;
+  padding: 24px 0;
+  text-align: center;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  color: #fff;
+  background: #222;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+}
+.source, .target {
+  font-weight: 500;
+}
+.arrow {
+  color: #aaa;
+  font-size: 1.2em;
+} 

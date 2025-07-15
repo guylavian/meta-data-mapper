@@ -1,0 +1,68 @@
+.inputCard {
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.tabHeader {
+  display: flex;
+  border-bottom: 1.5px solid var(--color-borderStrong);
+  margin-bottom: 24px;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  border-bottom: 1.5px solid transparent;
+  margin-right: 16px;
+  color: var(--color-textMuted);
+}
+
+.tabButton.activeTab {
+  color: var(--color-text);
+  border-bottom-color: var(--color-primary);
+}
+
+.urlInputGroup, .jsonInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.selectInput, .textInput, .textareaInput {
+  width: 100%;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border 0.18s, background 0.18s;
+}
+
+.selectInput:focus, .textInput:focus, .textareaInput:focus {
+  border-color: var(--color-primary);
+}
+
+.primaryButton {
+  border-radius: 7px;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 28px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+
+.primaryButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.errorText {
+  margin-top: 16px;
+  font-size: 14px;
+} 

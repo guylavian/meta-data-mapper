@@ -1,96 +1,27 @@
-import React from 'react';
-import { Card, List, Button, Space, Select } from 'antd';
-import { Field } from '../../types/mapping';
-import { ArrowRightOutlined, DeleteOutlined } from '@ant-design/icons';
+import React from "react";
+import styles from "./MappingPreview.module.css";
+import { motion } from "framer-motion";
 
 interface MappingPreviewProps {
-  sourceFields: Field[];
-  targetFields: Field[];
-  mappingPairs: { source: Field; target: Field }[];
-  onMapField: (sourceField: Field, targetField: Field) => void;
-  onRemovePair: (index: number) => void;
+  loading?: boolean;
+  result?: string;
 }
 
-const MappingPreview: React.FC<MappingPreviewProps> = ({
-  sourceFields,
-  targetFields,
-  mappingPairs,
-  onMapField,
-  onRemovePair,
-}) => {
-  const unmappedSourceFields = sourceFields.filter(
-    (source) => !mappingPairs.some((pair) => pair.source.name === source.name)
-  );
-
-  const unmappedTargetFields = targetFields.filter(
-    (target) => !mappingPairs.some((pair) => pair.target.name === target.name)
-  );
-
-  return (
-    <Space direction="vertical" style={{ width: '100%' }}>
-      <Card title="Current Mappings">
-        <List
-          dataSource={mappingPairs}
-          renderItem={(pair, index) => (
-            <List.Item
-              actions={[
-                <Button
-                  key="delete"
-                  type="text"
-                  danger
-                  icon={<DeleteOutlined />}
-                  onClick={() => onRemovePair(index)}
-                />,
-              ]}
-            >
-              <Space>
-                <span>{pair.source.name}</span>
-                <ArrowRightOutlined />
-                <span>{pair.target.name}</span>
-              </Space>
-            </List.Item>
-          )}
-        />
-      </Card>
-
-      {unmappedSourceFields.length > 0 && (
-        <Card title="Create New Mapping">
-          <List
-            dataSource={unmappedSourceFields}
-            renderItem={(sourceField) => (
-              <List.Item>
-                <Space>
-                  <span>{sourceField.name}</span>
-                  <ArrowRightOutlined />
-                  <Select
-                    style={{ width: 200 }}
-                    placeholder="Select target field"
-                    onChange={(_, option: any) => {
-                      const targetField = targetFields.find(
-                        (f) => f.name === option.value
-                      );
-                      if (targetField) {
-                        onMapField(sourceField, targetField);
-                      }
-                    }}
-                  >
-                    {unmappedTargetFields.map((targetField) => (
-                      <Select.Option
-                        key={targetField.name}
-                        value={targetField.name}
-                      >
-                        {targetField.name}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Space>
-              </List.Item>
-            )}
-          />
-        </Card>
-      )}
-    </Space>
-  );
-};
-
-export default MappingPreview; 
+export const MappingPreview: React.FC<MappingPreviewProps> = ({ loading, result }) => (
+  <motion.div
+    className={styles.previewCard}
+    initial={{ opacity: 0, y: 24 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -24 }}
+    transition={{ duration: 0.35 }}
+  >
+    <h3 className={styles.title}>Mapping Preview</h3>
+    {loading ? (
+      <div className={styles.loading}>Loading preview…</div>
+    ) : result ? (
+      <pre className={styles.result}>{result}</pre>
+    ) : (
+      <div className={styles.empty}>No preview available.</div>
+    )}
+  </motion.div>
+); 

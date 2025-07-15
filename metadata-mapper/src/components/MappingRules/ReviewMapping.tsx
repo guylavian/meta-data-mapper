@@ -1,77 +1,38 @@
-import React from 'react';
-import { Card, List, Button, Typography } from 'antd';
-import { TransformationChain } from '../../types/transformation';
-import { Entity } from '../../types/mapping';
-
-const { Title, Text } = Typography;
+import React from "react";
+import styles from "./ReviewMapping.module.css";
+import { motion } from "framer-motion";
 
 interface ReviewMappingProps {
-  entity: string | null;
-  sourceFields: string[];
-  targetFields: string[];
-  transformationChain: TransformationChain | null;
-  onGenerate: () => void;
+  mapping: { source: string; target: string }[];
 }
 
-export const ReviewMapping: React.FC<ReviewMappingProps> = ({
-  entity,
-  sourceFields,
-  targetFields,
-  transformationChain,
-  onGenerate
-}) => {
-  return (
-    <Card>
-      <Title level={4}>Review Mapping</Title>
-      
-      <div style={{ marginBottom: 24 }}>
-        <Text strong>Selected Entity: </Text>
-        <Text>{entity}</Text>
-      </div>
-
-      <div style={{ marginBottom: 24 }}>
-        <Text strong>Source Fields:</Text>
-        <List
-          size="small"
-          dataSource={sourceFields}
-          renderItem={field => <List.Item>{field}</List.Item>}
-        />
-      </div>
-
-      <div style={{ marginBottom: 24 }}>
-        <Text strong>Target Fields:</Text>
-        <List
-          size="small"
-          dataSource={targetFields}
-          renderItem={field => <List.Item>{field}</List.Item>}
-        />
-      </div>
-
-      {transformationChain && (
-        <div style={{ marginBottom: 24 }}>
-          <Text strong>Transformations:</Text>
-          <List
-            size="small"
-            dataSource={transformationChain.transformations}
-            renderItem={transformation => (
-              <List.Item>
-                <div>
-                  <div>{transformation.name}</div>
-                  <div>
-                    <Text type="secondary">
-                      {transformation.type} - {transformation.operation}
-                    </Text>
-                  </div>
-                </div>
-              </List.Item>
-            )}
-          />
-        </div>
-      )}
-
-      <Button type="primary" onClick={onGenerate}>
-        Generate Mapping Rules
-      </Button>
-    </Card>
-  );
-}; 
+export const ReviewMapping: React.FC<ReviewMappingProps> = ({ mapping }) => (
+  <motion.div
+    className={styles.reviewCard}
+    initial={{ opacity: 0, y: 24 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -24 }}
+    transition={{ duration: 0.35 }}
+  >
+    <h3 className={styles.title}>Review Mapping</h3>
+    {mapping.length === 0 ? (
+      <div className={styles.empty}>No mappings to review.</div>
+    ) : (
+      <ul className={styles.list}>
+        {mapping.map((pair, idx) => (
+          <motion.li
+            key={pair.source + pair.target}
+            className={styles.item}
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: idx * 0.05 }}
+          >
+            <span className={styles.source}>{pair.source}</span>
+            <span className={styles.arrow}>→</span>
+            <span className={styles.target}>{pair.target}</span>
+          </motion.li>
+        ))}
+      </ul>
+    )}
+  </motion.div>
+); 

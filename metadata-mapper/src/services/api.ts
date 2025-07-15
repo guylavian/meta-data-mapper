@@ -96,6 +96,51 @@ class ApiService {
       throw error;
     }
   }
+
+  // --- Mapping Management CRUD ---
+  async getMappings(): Promise<any[]> {
+    const response = await fetch(`${API_BASE_URL}/mappings`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return handleResponse<any[]>(response);
+  }
+
+  async getMapping(id: string): Promise<any> {
+    const response = await fetch(`${API_BASE_URL}/mappings/${id}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return handleResponse<any>(response);
+  }
+
+  async createMapping(mapping: any): Promise<any> {
+    const response = await fetch(`${API_BASE_URL}/mappings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(mapping),
+    });
+    return handleResponse<any>(response);
+  }
+
+  async updateMapping(id: string, mapping: any): Promise<any> {
+    const response = await fetch(`${API_BASE_URL}/mappings/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(mapping),
+    });
+    return handleResponse<any>(response);
+  }
+
+  async deleteMapping(id: string): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/mappings/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  }
 }
 
 export const api = new ApiService(); 
