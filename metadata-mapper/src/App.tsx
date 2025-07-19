@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from './theme/ThemeProvider';
-import { DataMapperLayout } from './components/DataMapperLayout';
+import { DataMapperLayout } from './components/DataMapper/DataMapperLayout';
+import './styles/global.css';
 
 function App() {
   return (
