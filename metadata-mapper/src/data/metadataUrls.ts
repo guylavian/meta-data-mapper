@@ -24,10 +24,12 @@ export const metadataUrls: MetadataUrl[] = [
     description: 'Country information in JSON format',
     type: 'json'
   },
+  // Requires a valid key from OpenWeather. Set VITE_OPENWEATHER_API_KEY in your
+  // environment to use this example.
   {
     name: 'Weather API',
-    url: 'https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY',
-    description: 'Weather data in JSON format (requires API key)',
+    url: `https://api.openweathermap.org/data/2.5/weather?q=London&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}`,
+    description: 'Weather data in JSON format',
     type: 'json'
   },
   {
