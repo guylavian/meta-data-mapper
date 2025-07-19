@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "start": "node dist/index.js"
-    },
+    "start": "node dist/index.js",
+    "test": "node node_modules/ts-node/dist/bin.js ./src/services/__tests__/MetadataService.test.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
