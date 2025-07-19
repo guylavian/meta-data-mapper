@@ -142,8 +142,14 @@ export class MetadataService {
       
       case 'format':
         if (config.formatString && config.sourceType === 'date') {
-          // TODO: Implement date formatting
-          return value;
+          try {
+            const date = new Date(value);
+            if (isNaN(date.getTime())) return value;
+            return new Intl.DateTimeFormat(config.formatString as string).format(date);
+          } catch (err) {
+            console.error('Error formatting date:', err);
+            throw new Error('Failed to format date');
+          }
         }
         return value;
       
